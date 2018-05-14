@@ -34,16 +34,20 @@ Route::get('foo', function() {
 });
 
 // Fetch all articles from db
-Route::get('articles', 'ArticlesController@index');
+// Route::get('articles', 'ArticlesController@index');
 
-// Create an article (Article add form)
-// This route should be placed before the wild character route with same url
-// e.g. before the route 'articles/{id}'. Otherwise this wild character route will be called instead.
-Route::get('articles/create', 'ArticlesController@create');
+// // Create an article (Article add form)
+// // This route should be placed before the wild character route with same url
+// // e.g. before the route 'articles/{id}'. Otherwise this wild character route will be called instead.
+// Route::get('articles/create', 'ArticlesController@create');
 
-// Fetch a specific article from db
-Route::get('articles/{id}', 'ArticlesController@show');
+// // Fetch a specific article from db
+// Route::get('articles/{id}', 'ArticlesController@show');
 
-// Store Article in db
-Route::post('articles/store', 'ArticlesController@store');
+// // Store Article in db
+// Route::post('articles/store', 'ArticlesController@store');
+
+
+Route::resource('articles', 'ArticlesController');
 /*** My Custom Routes - End ***/
+

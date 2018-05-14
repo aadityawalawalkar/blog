@@ -18,7 +18,7 @@ class Article extends Model {
    */
   public function getPublishedAtAttribute()
   {
-    return Carbon::parse($this->attributes['published_at'])->toDateTimeString();
+    return Carbon::parse($this->attributes['published_at'])->toDateString();
   }
 
   /** 

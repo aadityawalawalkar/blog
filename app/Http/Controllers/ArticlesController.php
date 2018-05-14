@@ -21,8 +21,8 @@ class ArticlesController extends Controller {
     // $articles = Article::all();
 
     // Fetch articles using order by clause
-    // $articles = Article::orderBy('published_at', 'desc')->get();
-    $articles = Article::orderBy('created_at', 'desc')->get();
+    $articles = Article::orderBy('published_at', 'desc')->get();
+    // $articles = Article::orderBy('created_at', 'desc')->get();
 
     // Fetch all articles latest first
     // $articles = Article::latest('published_at', 'desc')->where('published_at', '<=', Carbon::now())->get();
@@ -90,5 +90,33 @@ class ArticlesController extends Controller {
 
   //   return redirect('articles');
   // }
+
+  /**
+   *
+   *
+   *
+   */
+  public function edit($id)
+  {
+    $article = Article::findOrFail($id);
+
+    return view('articles.edit', compact('article'));
+  }
+
+  /**
+   *
+   *
+   *
+   */
+  public function update($id, Request $request)
+  {
+    $article = Article::findOrFail($id);
+
+    $article->update($request->all());
+
+    return redirect('articles');
+  }
+
+
 
 }
