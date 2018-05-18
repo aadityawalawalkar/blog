@@ -4,7 +4,7 @@
 
   {{-- {{ var_dump($errors) }} --}}
 
-  @if ($errors->any())
+  {{-- @if ($errors->any())
 
     <ul class="alert alert-danger">
 
@@ -16,14 +16,16 @@
 
     </ul>
 
-  @endif
+  @endif --}}
+
+  @include('errors.list')
 
   <div class="container-fluid">
     <h1>Write a new article</h1>
     <hr/>
 
     {!! Form::open(['url' => 'articles/store']) !!}
-      <div class="form-group">
+      {{-- <div class="form-group">
         {!! Form::label('title', 'Title:') !!}
         {!! Form::text('title', null, ['class' => 'form-control']) !!}
       </div>
@@ -33,12 +35,13 @@
       </div>
       <div class="form-group">
         {!! Form::label('published_at', 'Publish Date:') !!}
-        {{-- {!! Form::input('date', 'published_at', Carbon\Carbon::now()->format('Y-m-d'), ['class' => 'form-control']) !!} --}}
         {!! Form::input('date', 'published_at', date('Y-m-d'), ['class' => 'form-control']) !!}
       </div>
       <div class="form-group">
         {!! Form::submit('Add Article', ['class' => 'btn btn-primary form-control']) !!}
-      </div>
+      </div> --}}
+
+      @include('articles._form', [ 'defaultDate' => date('Y-m-d'), 'submitButtonTxt' => 'Add Article'])
 
     {!! Form::close() !!}
   </div>

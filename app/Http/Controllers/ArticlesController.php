@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Article;
-use App\Http\Requests\CreateArticleRequest;
+use App\Http\Requests\ArticleRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Carbon\Carbon;
@@ -21,11 +21,12 @@ class ArticlesController extends Controller {
     // $articles = Article::all();
 
     // Fetch articles using order by clause
-    $articles = Article::orderBy('published_at', 'desc')->get();
+    // $articles = Article::orderBy('published_at', 'desc')->get();
     // $articles = Article::orderBy('created_at', 'desc')->get();
 
     // Fetch all articles latest first
     // $articles = Article::latest('published_at', 'desc')->where('published_at', '<=', Carbon::now())->get();
+    $articles = Article::latest('published_at', 'desc')->published()->get();
 
     return view('articles.index', compact('articles'));
   }
@@ -81,10 +82,10 @@ class ArticlesController extends Controller {
   /**
    * Save an article
    *
-   * @param CreateArticleRequest $request
+   * @param ArticleRequest $request
    * @return Response
    */
-  // public function store(CreateArticleRequest $request)
+  // public function store(ArticleRequest $request)
   // {
   //   Article::create($request->all());
 
@@ -108,7 +109,7 @@ class ArticlesController extends Controller {
    *
    *
    */
-  public function update($id, Request $request)
+  public function update($id, ArticleRequest $request)
   {
     $article = Article::findOrFail($id);
 
@@ -116,7 +117,5 @@ class ArticlesController extends Controller {
 
     return redirect('articles');
   }
-
-
 
 }
